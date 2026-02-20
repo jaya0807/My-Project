@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* ECHO Medical-Tech Design System */
+    --background: 220 35% 6%;
+    --foreground: 210 40% 96%;
+
+    --card: 220 30% 10%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 220 30% 10%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 196 85% 48%;
+    --primary-foreground: 220 35% 6%;
+
+    --secondary: 220 25% 16%;
+    --secondary-foreground: 210 40% 90%;
+
+    --muted: 220 25% 14%;
+    --muted-foreground: 220 15% 55%;
+
+    --accent: 168 75% 42%;
+    --accent-foreground: 220 35% 6%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 25% 18%;
+    --input: 220 25% 14%;
+    --ring: 196 85% 48%;
+
+    --radius: 0.75rem;
+
+    /* Custom ECHO tokens */
+    --teal: 168 75% 42%;
+    --cyan: 196 85% 48%;
+    --navy: 220 60% 12%;
+    --navy-deep: 220 65% 7%;
+    --glass-bg: 220 30% 12%;
+    --glass-border: 220 30% 25%;
+    --warning: 38 92% 55%;
+    --success: 142 70% 45%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(220 65% 7%) 0%, hsl(220 45% 10%) 50%, hsl(196 50% 12%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(196 85% 48%) 0%, hsl(168 75% 42%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(220 30% 12% / 0.8) 0%, hsl(220 30% 8% / 0.6) 100%);
+    --gradient-glow: radial-gradient(ellipse at center, hsl(196 85% 48% / 0.15) 0%, transparent 70%);
+
+    /* Glassmorphism */
+    --glass-blur: blur(16px);
+    --glass-shadow: 0 8px 32px hsl(220 65% 4% / 0.6);
+    --glow-primary: 0 0 30px hsl(196 85% 48% / 0.3);
+    --glow-accent: 0 0 30px hsl(168 75% 42% / 0.3);
+
+    --sidebar-background: 220 35% 8%;
+    --sidebar-foreground: 210 40% 85%;
+    --sidebar-primary: 196 85% 48%;
+    --sidebar-primary-foreground: 220 35% 6%;
+    --sidebar-accent: 220 25% 14%;
+    --sidebar-accent-foreground: 210 40% 85%;
+    --sidebar-border: 220 25% 16%;
+    --sidebar-ring: 196 85% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    background: hsl(var(--background));
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: hsl(var(--glass-bg) / 0.6);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid hsl(var(--glass-border) / 0.5);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .glass-card {
+    background: linear-gradient(135deg, hsl(220 30% 13% / 0.8), hsl(220 30% 9% / 0.7));
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(220 30% 25% / 0.4);
+    box-shadow: 0 8px 32px hsl(220 65% 4% / 0.5), inset 0 1px 0 hsl(220 30% 35% / 0.15);
+  }
+
+  .glow-primary {
+    box-shadow: var(--glow-primary);
+  }
+
+  .glow-accent {
+    box-shadow: var(--glow-accent);
+  }
+
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-bg {
+    background: var(--gradient-hero);
+    position: relative;
+  }
+
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(hsl(196 85% 48% / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(196 85% 48% / 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .severity-normal {
+    color: hsl(var(--success));
+    background: hsl(142 70% 45% / 0.15);
+    border: 1px solid hsl(142 70% 45% / 0.3);
+  }
+
+  .severity-moderate {
+    color: hsl(var(--warning));
+    background: hsl(38 92% 55% / 0.15);
+    border: 1px solid hsl(38 92% 55% / 0.3);
+  }
+
+  .severity-high {
+    color: hsl(var(--destructive));
+    background: hsl(0 72% 51% / 0.15);
+    border: 1px solid hsl(0 72% 51% / 0.3);
+  }
+
+  .pulse-dot {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 1; box-shadow: 0 0 8px currentColor; }
+    50% { opacity: 0.6; box-shadow: 0 0 20px currentColor; }
+  }
+
+  @keyframes wave {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-wave {
+    animation: wave 8s linear infinite;
+  }
+
+  .nav-link-active {
+    color: hsl(var(--primary));
+    background: hsl(var(--primary) / 0.1);
+  }
+}
